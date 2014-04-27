@@ -1,7 +1,14 @@
 
+Note:
+====
+According to the "features_info.txt" and "README.txt" files provided for this work, the variables which name starts with 't' 
+are measurements of time and their unit is second. Those variables which name starts with 'f' are measurements of frequency 
+domain signals and their unit is radian.
+
 Variable name					Description
 =============					===========
-01. idSubject					Identifies the subject who performed the activity for each 							window sample. Its range is from 1 to 30. 
+01. idSubject					Identifies the subject who performed the activity for each 							
+						window sample. Its range is from 1 to 30. 
 
 02. Activity					Activity name.
 						WALKING

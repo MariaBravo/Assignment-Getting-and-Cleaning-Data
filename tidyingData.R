@@ -1,6 +1,30 @@
+## Results:
+##========================================
+## Activities names = 561
+## Types of activities = 6
+#1 WALKING
+#2 WALKING_UPSTAIRS
+#3 WALKING_DOWNSTAIRS
+#4 SITTING
+#5 STANDING
+#6 LAYING
+
+## 30 x 6 = 180 observations with 79 number of variables
+
+## Training
+## Train activities = 7352
+## Corresponding activity code = 7352
+## Corresponding subject code = 7352
+
+## Test
+## Test activities = 2947
+## Corresponding activity code = 2947
+## Corresponding subject code = 2947
+
+## Final data = 180 rows, 81 columns
+##========================================
 
 library(data.table)
-
 
 ## Reading the activities names
 read1 <- read.table("UCI HAR Dataset/features.txt", sep="", header=FALSE)
@@ -18,29 +42,7 @@ listNames <- gsub(",","_",listNames)
 listNames <- gsub(char,"",listNames)
 
 
-## Activities names = 561
-## Types of activities = 6
-#1 WALKING
-#2 WALKING_UPSTAIRS
-#3 WALKING_DOWNSTAIRS
-#4 SITTING
-#5 STANDING
-#6 LAYING
-
-## 30 x 6 = 180 observations with ? number of variables
-
-## Training
-## Train activities = 7352
-## Corresponding activity code = 7352
-## Corresponding subject code = 7352
-
-## Test
-## Test activities = 2947
-## Corresponding activity code = 2947
-## Corresponding subject code = 2947
-
-## Final data = 180 rows, 81 columns
-
+## Processing the training dataset
 ##-------------------------------------------------
 ##-------------------------------------------------
 ## Reading the activities measures at the training set
@@ -73,7 +75,6 @@ colId <- c(1:nrow(idSubjectTrain))
 idSubjectTrain <- cbind(colId, idSubjectTrain)
 setnames(idSubjectTrain, c("colId", "idSubject"))
 
-
 setkey(datActivityTrain, colId)
 setkey(idActivityTrain, colId)
 setkey(idSubjectTrain, colId)
@@ -81,8 +82,7 @@ setkey(idSubjectTrain, colId)
 datTrain <- datActivityTrain[idActivityTrain]
 datTrain <- datTrain[idSubjectTrain]
 
-##-------------------------------------------------
-##-------------------------------------------------
+## Processing the test dataset
 ##-------------------------------------------------
 ##-------------------------------------------------
 
@@ -120,18 +120,21 @@ setkey(idSubjectTest, colId)
 datTest <- datActivityTest[idActivityTest]
 datTest <- datTest[idSubjectTest]
 
-##
-##
-##
+##  Merging training and test datasets
+## -----------------------------------
+## -----------------------------------
 
 datActivity <- rbind(datTrain, datTest)
-    
+
+##  Processing the merged data
+## -----------------------------------
+## -----------------------------------
+
 listCol <- c("idSubject", "idActivity", grep("mean",listNames, value=TRUE), grep("std",listNames, value=TRUE))
 
 datActivity <- datActivity[ ,listCol, with = FALSE]
 setkeyv(datActivity, c("idSubject", "idActivity"))
 
-##DT <- datActivity[c("idSubject", "idActivity"),by=c("idSubject", "idActivity")]
 DT <- data.table(idSubject=integer(0), idActivity=integer(0))
 setkeyv(DT, c("idSubject", "idActivity"))
 
@@ -145,6 +148,9 @@ for(i in 3:length(listCol))
 
 datFinal <- unique(datActivity[,listColMean, with=FALSE])
 
+## Formatting output
+## -----------------
+## -----------------
 
 read8 <- read.table("UCI HAR Dataset/activity_labels.txt", sep="", header=FALSE)
 lblActivity <- as.data.table(read8)
@@ -165,6 +171,8 @@ for(i in 3:length(listCol))
 
 datTidy <- datFinal[,listColTidy, with=FALSE]
 
-write(datTidy, file = "TidyData.txt", sep=",")
+## Writing  output
+## -----------------
+## -----------------
 
-
+write.table(datTidy, file = "TidyData.txt", sep=",", row.names=FALSE)
