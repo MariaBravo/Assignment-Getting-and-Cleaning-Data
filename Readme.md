@@ -1,4 +1,3 @@
-
 ===================================================================
 Getting and Cleaning Data Assignment
 
@@ -6,12 +5,12 @@ Getting and Cleaning Data Assignment
 
 The following files are included:
 - 'README.md'
-- 'tidyingData.R' : Script performing the analisys and generating the tidy dataset.
+- 'tidyingData.R' : Script performing the analysis and generating the tidy dataset.
 - 'CodeBook.md'   : Code book describing each variable and its values in the tidy data set.
 - 'TidyData.txt'  : The tidy dataset.
 
 
-For the purposes of this analisys, we assume:
+For the purposes of this analysis, we assume:
 - The data files stored in a Zip format at url https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, 
 have been downloaded and extracted to a local directory where the script will be executed.
 - We have been required to work with the mean and standard deviation for each measurement. 
@@ -24,4 +23,5 @@ included in the datasets for any occurrence of the words "mean" or "std" and sel
 contains these words to include them in the tidy dataset.
 - Another "idSubject" and "Activity" variables has been added in order to link each vector of features 
 with the subject who performed the activity and the corresponding activity label.
-- The output of the script is a file named "TidyData.txt"
+- The output of the script is a file named "TidyData.txt".
+- The script to be executed is 'tidyingData.R'.
