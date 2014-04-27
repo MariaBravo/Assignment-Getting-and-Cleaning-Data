@@ -1,22 +1,21 @@
+Codebook
+========
 
 Note:
-====
-According to the "features_info.txt" and "README.txt" files provided for this work, the variables which name starts with 't' 
-are measurements of time and their unit is second. Those variables which name starts with 'f' are measurements of frequency 
-domain signals and their unit is radian.
+According to the "features_info.txt" and "README.txt" files provided for this work, the variables which name starts with 't' are measurements of time and their unit is second. Those variables which name starts with 'f' are measurements of frequency domain signals and their unit is radian.
 
-Variable name					Description
-=============					===========
-01. idSubject					Identifies the subject who performed the activity for each 							
-						window sample. Its range is from 1 to 30. 
+Variable name                                   Description
+=============                                   ===========
 
-02. Activity					Activity name.
-						WALKING
-						WALKING_UPSTAIRS
-						WALKING_DOWNSTAIRS
-						SITTING
-						STANDING
-						LAYING
+01. idSubject                                   Identifies the subject who performed the activity for each window                                                       sample. Its range is from 1 to 30. 
+
+02. Activity                                    Activity name.
+                                                WALKING
+                                                WALKING_UPSTAIRS
+                                                WALKING_DOWNSTAIRS
+                                                SITTING
+                                                STANDING
+                                                LAYING
 
 03. MeanOfVar_tBodyAcc_mean_X			Mean of Variable tBodyAcc-mean()-X
 04. MeanOfVar_tBodyAcc_mean_Y			Mean of Variable tBodyAcc-mean()-Y
